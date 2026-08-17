@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
+  <Project Path="OrderService.Api/OrderService.Api.csproj" />
+  <Project Path="PgQueue.Abstractions/PgQueue.Abstractions.csproj" />
+  <Project Path="PgQueue.Core/PgQueue.Core.csproj" />
+  <Project Path="PgQueue.EntityFrameworkCore/PgQueue.EntityFrameworkCore.csproj" />
+  <Project Path="PgQueue.Testing/PgQueue.Testing.csproj" />
+</Solution>
