@@ -1,5 +1,6 @@
 using PgQueue.Abstractions;
 using PgQueue.Core;
+using System.Diagnostics.CodeAnalysis;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -2,9 +2,17 @@
 
 namespace PgQueue.Core.Dispatch;
 
-internal class JobHandlerRegistry : IJobHandlerRegistry
+public class JobHandlerRegistry : IJobHandlerRegistry
 {
     private readonly Dictionary<string, JobHandlerDescriptor> _handlers = new(StringComparer.Ordinal);
+
+    public JobHandlerRegistry(IEnumerable<IConfigureJobHandlerRegistry> configurations)
+    {
+        foreach (var configure in configurations)
+        {
+            configure.Apply(this);
+        }
+    }
 
     public void Register<THandler, TPayload>(string jobType)
         where THandler : class, IJobHandler<TPayload>

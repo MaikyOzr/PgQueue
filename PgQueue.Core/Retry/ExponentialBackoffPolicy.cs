@@ -1,6 +1,6 @@
 ﻿namespace PgQueue.Core.Retry;
 
-internal static class ExponentialBackoffPolicy
+public static class ExponentialBackoffPolicy
 {
     public static TimeSpan Calculate(int attempt)
     {
