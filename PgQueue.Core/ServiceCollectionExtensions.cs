@@ -45,24 +45,15 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    public static IServiceCollection AddJobHandler<
-        THandler,
-        TPayload>(
+    public static IServiceCollection AddJobHandler<THandler,TPayload>(
         this IServiceCollection services,
         string jobType)
         where THandler : class, IJobHandler<TPayload>
     {
         services.AddScoped<THandler>();
 
-        services.AddSingleton(
-            sp =>
-            {
-                var registry = sp.GetRequiredService<JobHandlerRegistry>();
-
-                registry.Register<THandler, TPayload>(jobType);
-
-                return registry;
-            });
+        services.AddSingleton<IConfigureJobHandlerRegistry>(
+            new ConfigureJobHandlerRegistry<THandler, TPayload>(jobType));
 
         return services;
     }
