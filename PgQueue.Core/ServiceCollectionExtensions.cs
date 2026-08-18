@@ -24,9 +24,6 @@ public static class ServiceCollectionExtensions
 
         services.AddSingleton(dataSource);
 
-        // Ensure schema is created on first use
-        EnsureSchema(dataSource);
-
         services.AddSingleton(
             new PgQueueWorkerOptions
             {
@@ -39,6 +36,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IJobHandlerRegistry, JobHandlerRegistry>();
 
         services.AddSingleton<JobDispatcher>();
+
+        services.AddHostedService<PgQueueBackgroundService>();
 
         services.AddHostedService<PgQueueBackgroundService>();
 

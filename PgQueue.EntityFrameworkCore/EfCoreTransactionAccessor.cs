@@ -5,12 +5,11 @@ using System.Data.Common;
 
 namespace PgQueue.EntityFrameworkCore;
 
-internal sealed class EfCoreTransactionAccessor : IPgQueueTransactionAccessor
+public sealed class EfCoreTransactionAccessor<TDbContext> : IPgQueueTransactionAccessor where TDbContext : DbContext
 {
-    private readonly DbContext _dbContext;
+    private readonly TDbContext _dbContext;
 
-    public EfCoreTransactionAccessor(
-        DbContext dbContext)
+    public EfCoreTransactionAccessor(TDbContext dbContext)
     {
         _dbContext = dbContext;
     }
